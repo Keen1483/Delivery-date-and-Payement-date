@@ -25,7 +25,9 @@ class TimeManagerController extends AbstractController
             $timeManager = $form->getData();
             $deliveryDate = $timeManager->getDeliveryAt();
 
-            $afterMonth = $deliveryDate->modify('+30 days');
+            $newDate = new \DateTime($deliveryDate->format('Y').'-'.$deliveryDate->format('m').'-'.$deliveryDate->format('d'));
+
+            $afterMonth = $newDate->modify('+30 days');
             $day = $afterMonth->format('d');
             $month = $afterMonth->format('m');
             $year = $afterMonth->format('Y');
