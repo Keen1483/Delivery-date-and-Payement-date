@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TimeManagerController!{% endblock %}
+
+{% block body %}
+
+    <div class="text-center my-5">
+        <h1>Date de livraison Date de payment</h1>
+
+        <div class="my-5">
+            {% form_theme formTime 'bootstrap_5_layout.html.twig' %}
+
+            {{ form_start(formTime) }}
+                <div class="input text-start">
+                    {{ form_row(formTime, {'label': 'Date de livraison', 'attr': {'placeholder': 'Date de Livraison'}}) }}
+                </div>
+                <div class="submit text-start">
+                    <button type="submit" class="btn btn-success">Enregistrer</button>
+                </div>
+            {{ form_end(formTime) }}
+        </div>
+
+        <section class="mt-5">
+            <div class="row text-center">
+                <div class="col border">
+                    <h2>Date de livraison</h2>
+                </div>
+                <div class="col border">
+                    <h2>Date de paiement</h2>
+                </div>
+            </div>
+
+            {% if dates|length > 0 %}
+                {% for timeManager in dates %}
+                    <div class="row text-center">
+                        <div class="col border">
+                        {{ timeManager.deliveryAt|date('d/m/Y') }}
+                        </div>
+                        <div class="col border">
+                            {{ timeManager.paymentAt|date('d/m/Y') }}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </section>
+    </div>
+    
+{% endblock %}
